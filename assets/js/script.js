@@ -37,11 +37,13 @@ function start() {
             direction: null
         },
         ghosts: [
-            {death: false, position: {x: 10, y: 9}},
-            {death: false, position: {x: 10, y: 9}},
-            {death: false, position: {x: 10, y: 9}},
-            {death: false, position: {x: 10, y: 9}},
+            {name: 'clyde', death: false, position: {x: 9, y: 9}},
+            {name: 'inky', death: false, position: {x: 10, y: 8}},
+            {name: 'pinky', death: false, position: {x: 10, y: 10}},
+            {name: 'blinky', death: false, position: {x: 11, y: 9}},
         ],
+        dazzled: 0,
+        bonbon: 0,
         points: 0
     }
 
@@ -49,7 +51,6 @@ function start() {
     const scoreboardDiv = document.createElement('div')
     scoreboardDiv.classList.add('pacman-scoreboard')
     const lifeDiv = document.createElement('div')
-    lifeDiv.innerHTML = "1 UP"
     const pointsDiv = document.createElement('div')
     pointsDiv.innerHTML = game.points
     scoreboardDiv.append(lifeDiv, pointsDiv)
@@ -67,83 +68,157 @@ function start() {
             if (typeCase === 0) caseDiv.classList.add('wall')
             else {
                 caseDiv.classList.add('floor')
-                if (typeCase === 2) caseDiv.classList.add('bonbon')
-                else if (typeCase === 3) caseDiv.classList.add('mega-bonbon')
+                if (typeCase === 2) {
+                    caseDiv.classList.add('bonbon')
+                    game.bonbon++
+                } else if (typeCase === 3) {
+                    caseDiv.classList.add('mega-bonbon')
+                    game.bonbon++
+                }
             }
 
             game.board[x][y] = {typeCase, element: caseDiv}
             gameDiv.append(caseDiv)
         })
     })
-    console.log(game.board)
     pacmanDiv.append(gameDiv)
 
-    function pacmanMove() {
+    game.interval = setInterval(run, 500)
+
+    function run() {
+        if (game.bonbon === 0) {
+            clearInterval(game.interval)
+            alert("Vous avez gagner !")
+        }
+
         if (game.pacman.direction != null) {
             const position = game.pacman.position
+            let gridCase
             switch (game.pacman.direction) {
                 case "down":
-                    if (game.board[position.x + 1][position.y].typeCase) {
-                        position.x++
-                    }
+                    gridCase = game.board[position.x + 1]
+                    if (gridCase === undefined) position.x = 0
+                    else if (gridCase[position.y]?.typeCase) position.x++
                     break
                 case "right":
-                    if (game.board[position.x][position.y + 1]?.typeCase) {
-                        position.y++
-                    }
+                    gridCase = game.board[position.x][position.y + 1]
+                    if (gridCase === undefined) position.y = 0
+                    else if (gridCase?.typeCase) position.y++
                     break
                 case "up":
-                    if (game.board[position.x - 1][position.y]?.typeCase) {
-                        position.x--
-                    }
+                    gridCase = game.board[position.x - 1]
+                    if (gridCase === undefined) position.x = game.board.length - 1
+                    else if (gridCase[position.y]?.typeCase) position.x--
                     break
                 case "left":
-                    if (game.board[position.x][position.y - 1]?.typeCase) {
-                        position.y--
-                    }
+                    gridCase = game.board[position.x][position.y - 1]
+                    if (gridCase === undefined) position.y = game.board[position.x].length - 1
+                    else if (gridCase?.typeCase) position.y--
                     break
             }
+            pacmanRender()
+
+            if (game.pacman.element.classList.contains('ghost')) {
+                game.pacman.direction = null
+                clearInterval(game.interval)
+                alert("Vous avez perdu !")
+            }
+
+            // GHOST Move
+            game.ghosts.forEach(ghost => ghostMove(ghost.position))
+            ghostRender()
+
+            if (game.pacman.element.classList.contains('ghost-dazzled')) {
+
+            } else if (game.pacman.element.classList.contains('ghost')) {
+                game.pacman.direction = null
+                clearInterval(game.interval)
+                alert("Vous avez perdu !")
+            }
         }
-        pacmanMoveRender()
     }
 
-    function pacmanMoveRender() {
-        game.pacman.element?.classList.remove('pacman', 'pacman-down', 'pacman-right', 'pacman-up', 'pacman-left')
+    function ghostMove(position) {
+        switch (Math.floor(Math.random() * 4)) {
+            case 0:
+                if (game.board[position.x + 1][position.y].typeCase) position.x++
+                else ghostMove(position)
+                break
+            case 1:
+                if (game.board[position.x][position.y + 1]?.typeCase) position.y++
+                else ghostMove(position)
+                break
+            case 2:
+                if (game.board[position.x - 1][position.y]?.typeCase) position.x--
+                else ghostMove(position)
+                break
+            case 3:
+                if (game.board[position.x][position.y - 1]?.typeCase) position.y--
+                else ghostMove(position)
+                break
+        }
+    }
 
+    function pacmanRender() {
+        game.pacman.element?.classList.remove('pacman', 'pacman-down', 'pacman-right', 'pacman-up', 'pacman-left')
         const element = game.board[game.pacman.position.x][game.pacman.position.y].element
         element.classList.add('pacman', `pacman-${game.pacman.direction}`)
 
         if (element.classList.contains('mega-bonbon')) {
             element.classList.remove('mega-bonbon')
+            game.dazzled = 10
+            game.bonbon--
             points(50)
         } else if (element.classList.contains('bonbon')) {
             element.classList.remove('bonbon')
+            game.bonbon--
             points(10)
         }
 
         game.pacman.element = element
     }
 
+    pacmanRender()
+
+    function ghostRender() {
+        const dazzled = game.dazzled > 0
+
+        game.ghosts.forEach(ghost => {
+            ghost.element?.classList.remove('ghost', `ghost-${ghost.name}`, 'ghost-dazzled')
+            const element = game.board[ghost.position.x][ghost.position.y].element
+
+            element.classList.add('ghost', `ghost-${ghost.name}`)
+            if (dazzled) element.classList.add('ghost-dazzled')
+
+            ghost.element = element
+        })
+
+        if (dazzled) game.dazzled--
+    }
+
+    ghostRender()
+
     function points(amount) {
         game.points += amount
         pointsDiv.innerHTML = game.points
     }
 
-    setInterval(pacmanMove, 500)
-
-
     document.addEventListener('keyup', event => {
         switch (event.key) {
             case "ArrowDown":
+            case "s":
                 game.pacman.direction = "down" // x++
                 break
             case "ArrowRight":
+            case "d":
                 game.pacman.direction = "right" // y++
                 break
             case "ArrowUp":
+            case "z":
                 game.pacman.direction = "up" // x--
                 break
             case "ArrowLeft":
+            case "q":
                 game.pacman.direction = "left" // y--
                 break
         }

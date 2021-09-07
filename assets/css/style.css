@@ -6,7 +6,9 @@
     --ghost-pink: #ffb8ff;
     --ghost-cyan: #00ffff;
     --ghost-orange: #ffb851;
-    --walls: #1919A6;
+    --wall: #1919A6;
+    --floor: #000000;
+    --size: 40px;
 }
 
 #pacman *, #pacman *:after, #pacman *:before {
@@ -21,7 +23,7 @@
     display: flex;
     flex-direction: column;
     color: var(--color);
-    background-color: var(--background);
+    background-color: var(--floor);
 }
 
 #pacman .pacman-scoreboard {
@@ -35,13 +37,13 @@
 
 #pacman .pacman-game {
     display: grid;
-    grid-template-columns: repeat(19, 40px);
-    grid-template-rows: repeat(22, 40px);
+    grid-template-columns: repeat(19, var(--size));
+    grid-template-rows: repeat(22, var(--size));
 }
 
 .wall, .floor {
-    width: 40px;
-    height: 40px;
+    width: var(--size);
+    height: var(--size);
 
     display: flex;
     justify-content: center;
@@ -49,23 +51,27 @@
 }
 
 .wall {
-    background-color: var(--walls);
+    background-color: var(--wall);
+}
+
+.floor {
+    background-color: var(--floor);
 }
 
 .bonbon, .mega-bonbon {
-    background-image: url("/assets/img/bonbon.gif");
-    background-size: 50%;
+    background-image: url("/assets/img/bonbon.svg");
+    background-size: calc(var(--size) / 4);
     background-repeat: no-repeat;
     background-position: center center;
 }
 
 .mega-bonbon {
-    background-size: 100%;
+    background-size: calc(var(--size) / 2.5);
 }
 
 .pacman {
-    background-image: url("/assets/img/pacman.gif");
-    background-size: 80%;
+    background-image: url("/assets/img/pacman.svg");
+    background-size: calc(var(--size) / 1.2);
     background-repeat: no-repeat;
     background-position: center center;
 }
@@ -79,9 +85,35 @@
 }
 
 .pacman-up {
-    transform: rotate(-90deg);
+    transform: rotate(-90deg) rotateX(180deg);
 }
 
 .pacman-left {
-    transform: rotate(180deg);
+    transform: rotateY(180deg);
+}
+
+.ghost {
+    background-size: calc(var(--size) / 1.2);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.ghost-blinky {
+    background-image: url("/assets/img/blinky.svg");
+}
+
+.ghost-clyde {
+    background-image: url("/assets/img/clyde.svg");
+}
+
+.ghost-inky {
+    background-image: url("/assets/img/inky.svg");
+}
+
+.ghost-pinky {
+    background-image: url("/assets/img/pinky.svg");
+}
+
+.ghost-dazzled {
+    background-image: url("/assets/img/dazzled.svg");
 }

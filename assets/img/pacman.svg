@@ -1,0 +1,19 @@
+<svg id="eqZWyBHuYAo1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"
+     shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+    <style>
+        <![CDATA[#eqZWyBHuYAo2_tr {animation: eqZWyBHuYAo2_tr__tr 1000ms linear infinite normal forwards}@keyframes eqZWyBHuYAo2_tr__tr { 0% {transform: translate(30px,30px) rotate(0deg)} 50% {transform: translate(30px,30px) rotate(-25deg)} 100% {transform: translate(30px,30px) rotate(0deg)}} #eqZWyBHuYAo5_tr {animation: eqZWyBHuYAo5_tr__tr 1000ms linear infinite normal forwards}@keyframes eqZWyBHuYAo5_tr__tr { 0% {transform: translate(29.999993px,30px) rotate(0deg)} 50% {transform: translate(29.999993px,30px) rotate(25deg)} 100% {transform: translate(29.999993px,30px) rotate(0deg)}}]]>
+    </style>
+    <g id="eqZWyBHuYAo2_tr" transform="translate(30,30) rotate(0)">
+        <g id="eqZWyBHuYAo2" transform="translate(-30,-30)">
+            <path id="eqZWyBHuYAo3" d="M30,0C13.4315,0,0,13.4315,0,30L60,30C60,13.4315,46.5685,0,30,0Z"
+                  transform="matrix(1 0 0 1 -0.000007 0)" fill="rgb(255,238,0)" stroke="none" stroke-width="1"/>
+            <path id="eqZWyBHuYAo4"
+                  d="M46.4709,18.2355C46.4709,18.923,46.3355,19.6038,46.0724,20.239C45.8093,20.8742,45.4236,21.4513,44.9375,21.9375C44.4513,22.4236,43.8742,22.8093,43.239,23.0724C42.6038,23.3355,41.923,23.4709,41.2354,23.4709C40.5479,23.4709,39.8671,23.3355,39.2319,23.0724C38.5967,22.8093,38.0196,22.4236,37.5334,21.9375C37.0473,21.4513,36.6616,20.8742,36.3985,20.239C36.1354,19.6038,36,18.923,36,18.2355C36,17.5479,36.1354,16.8671,36.3985,16.2319C36.6616,15.5967,37.0473,15.0196,37.5334,14.5334C38.0196,14.0473,38.5967,13.6616,39.2319,13.3985C39.8671,13.1354,40.5479,13,41.2354,13C41.923,13,42.6038,13.1354,43.239,13.3985C43.8742,13.6616,44.4513,14.0473,44.9375,14.5334C45.4236,15.0196,45.8093,15.5967,46.0724,16.2319C46.3355,16.8671,46.4709,17.5479,46.4709,18.2355Z"
+                  transform="matrix(1 0 0 1 1.742511 1.805505)" fill="rgb(51,51,51)" stroke="none" stroke-width="1"/>
+        </g>
+    </g>
+    <g id="eqZWyBHuYAo5_tr" transform="translate(29.999993,30) rotate(0)">
+        <path id="eqZWyBHuYAo5" d="M30,60C46.5685,60,60,46.5685,60,30L-0.000007,30C-0.000007,46.5685,13.4315,60,30,60Z"
+              transform="translate(-29.999993,-30)" fill="rgb(255,238,0)" stroke="none" stroke-width="1"/>
+    </g>
+</svg>

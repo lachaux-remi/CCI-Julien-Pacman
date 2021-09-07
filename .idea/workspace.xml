@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97c2b298-7be9-4f14-86f3-0e921a82c69b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/img/bonbon.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/img/pacman.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/bonbon.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/pacman.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +52,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="optimize.imports.on.save" value="true" />
     <property name="rearrange.code.on.save" value="true" />
-    <property name="settings.editor.selected.configurable" value="actions.on.save" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -72,6 +72,7 @@
       <workItem from="1630915927912" duration="39000" />
       <workItem from="1630915979781" duration="249000" />
       <workItem from="1630916242876" duration="16256000" />
+      <workItem from="1630998410170" duration="16644000" />
     </task>
     <servers />
   </component>
@@ -88,6 +89,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
