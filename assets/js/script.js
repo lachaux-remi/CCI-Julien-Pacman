@@ -6,7 +6,7 @@ Array.prototype.clone = function () {
 const pacmanDiv = document.querySelector('#pacman')
 const gameCaseDefault = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 3, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 3, 0],
+    [0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0],
     [0, 2, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 0, 0, 2, 0],
     [0, 2, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 0, 0, 2, 0],
     [0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0],
@@ -25,7 +25,7 @@ const gameCaseDefault = [
     [0, 0, 2, 0, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0, 2, 0, 0],
     [0, 2, 2, 2, 2, 0, 2, 2, 2, 0, 2, 2, 2, 0, 2, 2, 2, 2, 0],
     [0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0],
-    [0, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0],
+    [0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ]
 
@@ -37,12 +37,11 @@ function start() {
             direction: null
         },
         ghosts: [
-            {name: 'clyde', death: false, position: {x: 9, y: 9}},
-            {name: 'inky', death: false, position: {x: 10, y: 8}},
-            {name: 'pinky', death: false, position: {x: 10, y: 10}},
-            {name: 'blinky', death: false, position: {x: 11, y: 9}},
+            {name: 'clyde', position: {x: 9, y: 9}},
+            {name: 'inky', position: {x: 10, y: 8}},
+            {name: 'pinky', position: {x: 10, y: 10}},
+            {name: 'blinky', position: {x: 11, y: 9}},
         ],
-        dazzled: 0,
         bonbon: 0,
         points: 0
     }
@@ -71,9 +70,6 @@ function start() {
                 if (typeCase === 2) {
                     caseDiv.classList.add('bonbon')
                     game.bonbon++
-                } else if (typeCase === 3) {
-                    caseDiv.classList.add('mega-bonbon')
-                    game.bonbon++
                 }
             }
 
@@ -83,7 +79,7 @@ function start() {
     })
     pacmanDiv.append(gameDiv)
 
-    game.interval = setInterval(run, 500)
+    game.interval = setInterval(run, 250)
 
     function run() {
         if (game.bonbon === 0) {
@@ -128,9 +124,7 @@ function start() {
             game.ghosts.forEach(ghost => ghostMove(ghost.position))
             ghostRender()
 
-            if (game.pacman.element.classList.contains('ghost-dazzled')) {
-
-            } else if (game.pacman.element.classList.contains('ghost')) {
+            if (game.pacman.element.classList.contains('ghost')) {
                 game.pacman.direction = null
                 clearInterval(game.interval)
                 alert("Vous avez perdu !")
@@ -181,19 +175,14 @@ function start() {
     pacmanRender()
 
     function ghostRender() {
-        const dazzled = game.dazzled > 0
-
         game.ghosts.forEach(ghost => {
-            ghost.element?.classList.remove('ghost', `ghost-${ghost.name}`, 'ghost-dazzled')
+            ghost.element?.classList.remove('ghost', `ghost-${ghost.name}`)
             const element = game.board[ghost.position.x][ghost.position.y].element
 
             element.classList.add('ghost', `ghost-${ghost.name}`)
-            if (dazzled) element.classList.add('ghost-dazzled')
 
             ghost.element = element
         })
-
-        if (dazzled) game.dazzled--
     }
 
     ghostRender()
@@ -223,8 +212,6 @@ function start() {
                 break
         }
     })
-
-    console.log(game)
 }
 
 start()
