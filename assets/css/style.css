@@ -59,7 +59,7 @@
 }
 
 .bonbon, .mega-bonbon {
-    background-image: url("/assets/img/bonbon.svg");
+    background-image: url("../img/bonbon.svg");
     background-size: calc(var(--size) / 4);
     background-repeat: no-repeat;
     background-position: center center;
@@ -70,7 +70,7 @@
 }
 
 .pacman {
-    background-image: url("/assets/img/pacman.svg");
+    background-image: url("../img/pacman.svg");
     background-size: calc(var(--size) / 1.2);
     background-repeat: no-repeat;
     background-position: center center;
@@ -99,17 +99,17 @@
 }
 
 .ghost-blinky {
-    background-image: url("/assets/img/blinky.svg");
+    background-image: url("../img/blinky.svg");
 }
 
 .ghost-clyde {
-    background-image: url("/assets/img/clyde.svg");
+    background-image: url("../img/clyde.svg");
 }
 
 .ghost-inky {
-    background-image: url("/assets/img/inky.svg");
+    background-image: url("../img/inky.svg");
 }
 
 .ghost-pinky {
-    background-image: url("/assets/img/pinky.svg");
+    background-image: url("../img/pinky.svg");
 }
